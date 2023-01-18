@@ -5,3 +5,9 @@ import Month from "./Month.vue";
 <template>
   <Month />
 </template>
+
+<style>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</style>

@@ -1,1 +1,3 @@
-# Vue Component npm Example
+# Vue Month Calendar
+
+In test phase.

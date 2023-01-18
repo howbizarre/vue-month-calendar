@@ -1,6 +1,26 @@
 {
     "name": "@howbizarre/vue-month-calendar",
     "version": "1.0.1",
+    "description": "Draws a given month with its days using.",
+    "homepage": "https://howbizarre.github.io/calendar/",
+    "license": "CC-BY-4.0",
+    "repository": "github:@howbizarre/vue-month-calendar",
+    "author": "How Bizarre <how.bizarre@gmail.com>",
+    "keywords": [
+        "vue",
+        "tailwindcss",
+        "typescript",
+        "calendar",
+        "date",
+        "javascript",
+        "vuejs",
+        "node",
+        "typescript",
+        "component",
+        "month",
+        "dark-mode",
+        "vue3"
+    ],
     "type": "module",
     "files": [
         "dist"

@@ -1,2 +1,3 @@
 import VueMonthCalendar from "./VueMonthCalendar.vue";
-export { VueMonthCalendar };
+import Month from "./Month.vue";
+export { VueMonthCalendar, Month };

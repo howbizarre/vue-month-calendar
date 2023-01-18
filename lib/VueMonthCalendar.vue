@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import Month from "./Month.vue";
 
 defineProps({
-      msg: { type: String }
-    }
-)
+  msg: { type: String }
+});
 
 const count = ref(0);
 </script>
@@ -15,6 +15,8 @@ const count = ref(0);
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
   </div>
+
+  <Month />
 </template>
 
 <style scoped>

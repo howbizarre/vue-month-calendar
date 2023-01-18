@@ -41,6 +41,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "typescript-calendar-date": "^1.3.4",
         "vue": "^3.2.37"
     },
     "devDependencies": {

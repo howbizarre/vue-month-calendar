@@ -1,5 +1,5 @@
 <template>
-  <div class="month-grid py-3">
+  <div class="month-grid">
     <div v-for="md in allDaysInMonth" class="text-center" :key="md.day + md.date + md.month + md.year">
       <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day" :class="[isWeedend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]">
         {{ md.date }}

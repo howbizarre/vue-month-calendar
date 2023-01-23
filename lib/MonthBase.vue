@@ -1,6 +1,6 @@
 <template>
-  <div class="month-container w-[366px]">
-    <header>
+  <div class="month-container">
+    <header class="month-header">
       <slot name="header"></slot>
     </header>
     <main>
@@ -18,19 +18,21 @@
     bg-white dark:bg-slate-800
     ring-1 ring-zinc-900/5 dark:ring-zinc-600/25
     shadow-xl dark:shadow-zinc-800
-    rounded-lg p-5;
+    rounded-lg p-3 w-[350px];
 }
 
-.month-grid {
-    @apply grid grid-cols-7 gap-y-2;
-}
+.month-grid { @apply grid grid-cols-7 gap-y-2 py-3; }
+
+.month-header { @apply grid grid-cols-5 p-3; }
 
 .btn {
   @apply
     inline-block font-medium px-2 py-[3px]
     bg-teal-600 text-white hover:bg-teal-700 focus:bg-teal-700 active:bg-teal-800
-    leading-relaxed uppercase rounded-full
+    leading-relaxed uppercase text-[10px]
     shadow-md active:shadow-lg hover:shadow-lg focus:shadow-lg
     focus:outline-none focus:ring-0 transition duration-150 ease-in-out;
 }
+
+.btn-full-rouded { @apply rounded-full; }
 </style>

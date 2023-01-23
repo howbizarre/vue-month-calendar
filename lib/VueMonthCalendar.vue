@@ -1,10 +1,8 @@
 <template>
   <month-base>
     <template #header>
-      <div class="grid grid-cols-5 p-3">
-        <month-info :month="month" :year="year" @set-date="setDate" class="col-span-3" />
-        <month-actions :canBeReseted="canBeReseted" @prev-month="prevMonth" @next-month="nextMonth" @reset-month="resetMonth" class="col-span-2" />
-      </div>
+      <month-info :month="month" :year="year" @set-date="setDate" class="col-span-3" />
+      <month-actions :canBeReseted="canBeReseted" @prev-month="prevMonth" @next-month="nextMonth" @reset-month="resetMonth" class="col-span-2" />
     </template>
 
     <template #default>
@@ -147,6 +145,5 @@ function resetActiveDate(): void {
 
 <style>
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 </style>

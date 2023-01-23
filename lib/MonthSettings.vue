@@ -1,15 +1,14 @@
 <template>
   <template v-if="showSettings.forWeekDay || showSettings.forDate">
-    <div @click.self="hideSettings" class="animate-[dim-show_0.25s_ease-in-out_1] overflow-x-hidden overflow-y-auto fixed inset-0 z-[99] justify-center items-center flex">
-      <div class="month-container w-[300px]">
-
+    <div @click.self="hideSettings" class="blurred-bg">
+      <div class="month-container modal">
         <template v-if="showSettings.forWeekDay">
-          <h3 class="text-black dark:text-white">First day of the week is <strong class="text-teal-600 dark:text-teal-500">{{ firstWeekDay[0].toUpperCase() }}{{ firstWeekDay.slice(1) }}</strong></h3>
-          <form class="flex flex-col">
-            <label class="cursor-pointer text-black dark:text-white">
+          <h3 class="rw-colors text-left">First day of the week is <strong>{{ firstWeekDay[0].toUpperCase() }}{{ firstWeekDay.slice(1) }}</strong></h3>
+          <form class="start-day">
+            <label class="rw-colors cursor-pointer">
               <input type="radio" id="monday" value="monday" v-model="firstWeekDay" @change="changeFirstWeekDay" /> Monday
             </label>
-            <label class="cursor-pointer text-black dark:text-white">
+            <label class="rw-colors cursor-pointer">
               <input type="radio" id="sunday" value="sunday" v-model="firstWeekDay" @change="changeFirstWeekDay" /> Sunday
             </label>
           </form>
@@ -37,11 +36,11 @@
           </div>
 
           <div class="grid grid-cols-3 gap-3 text-black dark:text-white">
-            <button @click="changeMonth(month)" v-for="month in monthsInYear.short" class="btn text-[12px]" :class="{active: checkMonth(month)}">{{ month }}</button>
+            <button @click="changeMonth(month)" v-for="month in monthsInYear.short" class="btn btn-full-rouded text-[12px]" :class="{active: checkMonth(month)}">{{ month }}</button>
           </div>
         </template>
 
-        <button @click="hideSettings" class="float-right mt-3 text-[10px] btn">close</button>
+        <button @click="hideSettings" class="close-settings btn btn-full-rouded">close</button>
       </div>
     </div>
     <div class="opacity-50 fixed inset-0 z-[98] bg-black"></div>
@@ -81,6 +80,7 @@ function checkMonth(mnt: string): boolean {
 }
 
 function changeMonth(monthValue: string): void {
+  checkMonth(monthValue);
   emit("changeMonth", monthValue);
 }
 
@@ -109,7 +109,19 @@ function incrementYear(): void {
   to { opacity: 1; }
 }
 
-.active { @apply bg-blue-700; }
+.active { @apply !bg-blue-700; }
+
+.blurred-bg { @apply animate-[dim-show_0.25s_ease-in-out_1] overflow-x-hidden overflow-y-auto fixed inset-0 z-[99] justify-center items-center flex; }
+
+.modal { @apply  w-[300px]; }
+
+.close-settings { @apply float-right mt-3 text-[10px]; }
+
+.rw-colors { @apply text-black dark:text-white; }
+
+.rw-colors strong { @apply text-teal-600 dark:text-teal-500; }
+
+.start-day { @apply flex flex-col text-left; }
 
 /* Remove default arrows in input type number fields */
 /* Chrome, Safari, Edge, Opera */

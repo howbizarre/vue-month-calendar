@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between">
+    <div class="month-actions">
       <button @click="prevMonth">
         <svg width="24" height="24" viewBox="0 0 24 24" class="action-icon">
           <g id="evaArrowIosBackOutline0">
@@ -41,6 +41,8 @@ const nextMonth = () => emit("nextMonth");
 </script>
 
 <style>
+.month-actions { @apply flex justify-between; }
+
 .action-icon {
   @apply
     transition-colors

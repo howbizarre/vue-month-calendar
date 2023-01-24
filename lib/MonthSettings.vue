@@ -109,7 +109,8 @@ function incrementYear(): void {
   to { opacity: 1; }
 }
 
-.active { @apply !bg-blue-700; }
+.weekend.active,
+.active { @apply !bg-blue-700 text-white; }
 
 .blurred-bg { @apply animate-[dim-show_0.25s_ease-in-out_1] overflow-x-hidden overflow-y-auto fixed inset-0 z-[99] justify-center items-center flex; }
 

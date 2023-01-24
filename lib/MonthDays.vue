@@ -92,6 +92,10 @@ watch(props, () => {
     @apply !bg-teal-500/25;
 }
 
+.calendar-day.current.active {
+  @apply text-black dark:text-white;
+}
+
 .calendar-day.active {
     @apply bg-cyan-500/25;
 }

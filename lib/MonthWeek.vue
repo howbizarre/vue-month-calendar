@@ -21,8 +21,8 @@ const daysInWeek = weekDays[props.startDay];
 <style>
 .week-day {
   @apply
-    w-[42px] h-[42px] rounded-full
-    flex items-center justify-center
+    w-[36px] h-[36px] sm:w-[42px] sm:h-[42px]
+    flex items-center justify-center rounded-full
     capitalize text-center font-bold text-teal-600;
 }
 

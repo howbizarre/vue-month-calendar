@@ -66,9 +66,9 @@ const firstWeekDay = ref(props.startDay);
 const thisYear = ref(props.year);
 const thisMonth = ref(props.month);
 
-watch(props, (prps) => {
-  thisYear.value = prps.year;
-  thisMonth.value = prps.month;
+watch(props, (newPrps, oldPrps) => {
+  thisYear.value = newPrps.year;
+  thisMonth.value = newPrps.month;
 });
 
 const emit = defineEmits(["hideSettings", "changeFirstWeekDay", "decrementYear", "incrementYear", "changeYear", "changeMonth"]);

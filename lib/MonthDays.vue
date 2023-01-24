@@ -71,8 +71,8 @@ const isActive = (date: number, month: Month, year: number): string => {
 
 const allDaysInMonth = ref(fillMonth(props.month, props.year, props.startDay));
 
-watch(props, (prps) => {
-  allDaysInMonth.value = fillMonth(prps.month, prps.year, prps.startDay);
+watch(props, (newPrps, oldPrps) => {
+  allDaysInMonth.value = fillMonth(newPrps.month, newPrps.year, newPrps.startDay);
 });
 </script>
 

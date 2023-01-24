@@ -18,7 +18,7 @@
     bg-white dark:bg-slate-800
     ring-1 ring-zinc-900/5 dark:ring-zinc-600/25
     shadow-xl dark:shadow-zinc-800
-    rounded-lg p-3 w-[350px];
+    rounded-lg p-3 w-[350px] relative;
 }
 
 .month-grid { @apply grid grid-cols-7 gap-y-2 py-3; }

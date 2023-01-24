@@ -65,8 +65,8 @@ onMounted(() => {
   getDate(active); 
 });
 
-watch(active, () => {
-  getDate(active);
+watch(active, (a) => {
+  getDate(a);
 });
 
 function changeMonth(monthValue: Month): void {

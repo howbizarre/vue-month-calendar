@@ -1,6 +1,6 @@
 <template>
   <template v-if="showSettings.forWeekDay || showSettings.forDate">
-    <div class="modal">
+    <div class="month-settings-dialog">
       <template v-if="showSettings.forWeekDay">
         <h3 class="rw-colors text-left">First day of the week is <strong>{{ firstWeekDay[0].toUpperCase() }}{{ firstWeekDay.slice(1) }}</strong></h3>
         <form class="start-day">
@@ -111,14 +111,7 @@ function incrementYear(): void {
 .weekend.active,
 .active { @apply !bg-blue-700 text-white; }
 
-.blurred-bg {
-  @apply
-    animate-[dim-show_0.25s_ease-in-out_1]
-    overflow-x-hidden overflow-y-auto
-    fixed inset-0 z-[99] justify-center items-center flex;
-}
-
-.modal {
+.month-settings-dialog {
   @apply
     w-[300px]   
     bg-white dark:bg-slate-800

@@ -25,7 +25,7 @@
 
 .month-header { @apply grid grid-cols-5 p-3; }
 
-.btn {
+.btn-month-base {
   @apply
     inline-block font-medium px-2 py-[3px]
     bg-teal-600 text-white hover:bg-teal-700 focus:bg-teal-700 active:bg-teal-800

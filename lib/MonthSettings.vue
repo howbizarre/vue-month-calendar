@@ -35,11 +35,11 @@
         </div>
 
         <div class="grid grid-cols-3 gap-3 text-black dark:text-white">
-          <button @click="changeMonth(month)" v-for="month in monthsInYear.short" class="btn btn-full-rouded text-[12px]" :class="{active: checkMonth(month)}">{{ month }}</button>
+          <button @click="changeMonth(month)" v-for="month in monthsInYear.short" class="btn-month-base btn-full-rouded text-[12px]" :class="{active: checkMonth(month)}">{{ month }}</button>
         </div>
       </template>
 
-      <button @click="hideSettings" class="close-settings btn btn-full-rouded">close</button>
+      <button @click="hideSettings" class="close-settings btn-month-base btn-full-rouded">close</button>
     </div>
 
     <div class="opacity-50 fixed inset-0 z-[98] bg-black" @click.self="hideSettings"></div>

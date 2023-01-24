@@ -4,7 +4,7 @@
     <div class="info-bottom-part">
       <strong>{{ date }} {{ nameOfMonth }} {{ year }}</strong>
 
-      <button @click="resetActiveDate" class="btn btn-full-rouded ml-2" v-if="resetDate">
+      <button @click="resetActiveDate" class="btn-month-base btn-full-rouded ml-2" v-if="resetDate">
         today
       </button>
     </div>

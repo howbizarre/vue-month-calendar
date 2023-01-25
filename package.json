@@ -1,8 +1,8 @@
 {
     "name": "@howbizarre/vue-month-calendar",
-    "version": "1.2.3",
+    "version": "1.2.4",
     "description": "Draws a given month with its days using.",
-    "homepage": "https://howbizarre.github.io/calendar/",
+    "homepage": "https://bizarre.how/calendar/",
     "license": "CC-BY-4.0",
     "repository": "github:@howbizarre/vue-month-calendar",
     "author": "How Bizarre <how.bizarre@gmail.com>",

@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
+import { ref, watch, toRefs } from "vue";
 import { fillMonth } from "./date-processing";
 import { monthNumber, monthName } from "typescript-calendar-date";
 

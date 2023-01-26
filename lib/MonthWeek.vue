@@ -9,13 +9,21 @@
 </template>
 
 <script lang="ts" setup>
+import { watch, ref } from "vue";
 import { weekDays, type WeekFirstDay } from "./date-processing";
 
 const props = defineProps<{
   startDay: WeekFirstDay;
 }>();
 
-const daysInWeek = weekDays[props.startDay];
+const daysInWeek = ref(weekDays[props.startDay]);
+
+watch(
+  () => props.startDay,
+  (startDay) => {
+    daysInWeek.value = weekDays[startDay];
+  }
+);
 </script>
 
 <style>

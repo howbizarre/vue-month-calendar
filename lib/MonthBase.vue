@@ -15,7 +15,7 @@
 <style>
 .month-container {
   @apply 
-    bg-white dark:bg-slate-800
+    bg-white dark:bg-zinc-800
     ring-1 ring-zinc-900/5 dark:ring-zinc-600/25
     shadow-xl dark:shadow-zinc-800
     rounded-lg p-3 max-[300px]:w-[300px] max-sm:w-full sm:w-[350px] relative;

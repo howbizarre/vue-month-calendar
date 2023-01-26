@@ -79,7 +79,7 @@ watch(props, (newPrps, oldPrps) => {
 <style>
 .calendar-day {
   @apply
-    w-[36px] h-[36px] sm:w-[42px] sm:h-[42px]
+    w-[42px] h-[42px]
     text-center rounded-full border-none
     transition-colors text-zinc-400 hover:bg-cyan-500/25;
 }

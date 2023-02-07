@@ -7,7 +7,7 @@
 
     <template #default>
       <month-week :startDay="firstDayOfTheWeek" />
-      <month-days :month="month" :year="year" :startDay="firstDayOfTheWeek" :activeDay="active" @activate-date="activateDate" />
+      <month-days :month="month" :year="year" :startDay="firstDayOfTheWeek" :activeDay="active" @activate-date="activateDate" :events="setEvents" />
     </template>
 
     <template #footer>
@@ -33,6 +33,14 @@ import MonthDays from "./MonthDays.vue";
 import MonthLabel from "./MonthLabel.vue";
 import MonthActions from "./MonthActions.vue";
 import MonthSettings from "./MonthSettings.vue";
+
+const props = defineProps<{
+  setEvents: {
+    date: number;
+    month: number;
+    year: number;
+  }[];
+}>();
 
 const firstDayOfTheWeek: Ref<WeekFirstDay> = ref("monday");
 

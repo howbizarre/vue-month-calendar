@@ -28,12 +28,80 @@ npm i @howbizarre/vue-month-calendar
 
 ```javasciprt
 <template>
-  <VueMonthCalendar @get-date="getDate" />
+  <VueMonthCalendar @get-date="getDate" :setEvents="setEvents" />
 </template>
 
 <script setup lang="ts">
 import { VueMonthCalendar } from "@howbizarre/vue-month-calendar";
 import "@howbizarre/vue-month-calendar/dist/style.css";
+
+const setEvents = [
+  {
+    date: 30,
+    month: 1,
+    year: 2023
+  },
+  {
+    date: 5,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 5,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 5,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 14,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 14,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 10,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 17,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 22,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 22,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 23,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 28,
+    month: 2,
+    year: 2023
+  },
+  {
+    date: 10,
+    month: 3,
+    year: 2023
+  }
+];
 
 function getDate(activeDate: { month: number, year: number, date: number }) {
   console.group("The returned data is:");

@@ -105,4 +105,4 @@ const fillMonth = (month: number, year: number, firstDayOfTheWeek: WeekFirstDay)
     return fullFiledArray;
 };
 
-export { fillMonth, weekDays, monthsInYear, type WeekFirstDay, type Month };
+export { fillMonth, weekDays, monthsInYear, type WeekFirstDay, type Month, type MonthArray };

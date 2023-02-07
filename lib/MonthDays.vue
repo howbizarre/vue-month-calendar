@@ -1,8 +1,9 @@
 <template>
   <div class="month-grid">
     <div v-for="md in allDaysInMonth" class="text-center" :key="md.day + md.date + md.month + md.year">
-      <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day" :class="[isWeedend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]">
+      <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day relative" :class="[isWeedend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]">
         {{ md.date }}
+        <div class="absolute bottom-[5px] left-0 w-full text-center flex justify-center" v-events="md"></div>
       </button>
     </div>
   </div>
@@ -12,6 +13,7 @@
 import { ref, watch, toRefs } from "vue";
 import { fillMonth } from "./date-processing";
 import { monthNumber, monthName } from "typescript-calendar-date";
+import type { Directive } from 'vue';
 
 import type { WeekFirstDay, Month } from "./date-processing";
 
@@ -26,7 +28,27 @@ const props = defineProps<{
   month: number;
   year: number;
   activeDay?: activeDay;
+  events: {
+    date: number;
+    month: number;
+    year: number;
+  }[];
 }>();
+
+
+const vEvents: Directive = {
+  mounted: (el: HTMLElement, binding: any) => {
+    const eventCount = ref("");
+
+    props.events.forEach((ev) => {
+      if (ev.date === binding.value.date && monthName(ev.month) === binding.value.month && ev.year === binding.value.year) {
+        eventCount.value = eventCount.value + "<i class='w-[5px] h-[5px] rounded-full bg-lime-500 mx-[1px]'></i>";
+      }
+    });
+
+    el.innerHTML = eventCount.value;
+  }
+};
 
 const dateObject = new Date();
 const currentMonth = dateObject.getMonth() + 1;

@@ -84,7 +84,7 @@ const getDate = (activeDate: { month: number, year: number, date: number }): voi
 onMounted(() => getDate(active));
 
 watch(active, a => getDate(a));
-watch(props, a => reactivEvents = a.setEvents.map(event => reactive(event)));
+watch(props, p => reactivEvents = p.setEvents.map(event => reactive(event)));
 
 function changeMonth(monthValue: Month): void {
   month.value = monthNumber(monthValue);

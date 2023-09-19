@@ -102,7 +102,7 @@ watch(
   }
 );
 
-watch(props, a => reactivEvents = a.events.map(event => reactive(event)));
+watch(props.events, pe => reactivEvents = pe.map(event => reactive(event)));
 </script>
 
 <style>

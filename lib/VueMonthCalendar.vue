@@ -42,8 +42,7 @@ const props = defineProps<{
   }[];
 }>();
 
-const reactivEvents = props.setEvents.map(event => reactive(event));
-const reactiveProps = reactive(props);
+let reactivEvents = props.setEvents.map(event => reactive(event));
 
 const firstDayOfTheWeek: Ref<WeekFirstDay> = ref("monday");
 
@@ -85,6 +84,7 @@ const getDate = (activeDate: { month: number, year: number, date: number }): voi
 onMounted(() => getDate(active));
 
 watch(active, a => getDate(a));
+watch(props, a => reactivEvents = a.setEvents.map(event => reactive(event)));
 
 function changeMonth(monthValue: Month): void {
   month.value = monthNumber(monthValue);

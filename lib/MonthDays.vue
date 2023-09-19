@@ -36,7 +36,7 @@ const props = defineProps<{
 }>();
 
 const { startDay, month, year } = toRefs(props);
-const reactivEvents = props.events.map(event => reactive(event));
+let reactivEvents = props.events.map(event => reactive(event));
 
 const vEvents: Directive = {
   mounted: (el: HTMLElement, binding: any) => {
@@ -101,6 +101,8 @@ watch(
     allDaysInMonth.value = fillMonth(Number(newMonth), Number(newYear), (newStartDay as WeekFirstDay));
   }
 );
+
+watch(props, a => reactivEvents = a.events.map(event => reactive(event)));
 </script>
 
 <style>

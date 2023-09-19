@@ -32,9 +32,52 @@ function getDate(activeDate: { month: number, year: number, date: number }) {
   console.log("Yeaar: ", activeDate.year);
   console.groupEnd();
 }
+
+function changeYear(yearValue: number): void {
+  console.log("Change Year to: ", yearValue);
+}
+
+function changeMonth(monthValue: number): void {
+  console.log("Change Month to: ", monthValue);
+}
+
+function decrementYear(decYear: number): void {
+  console.log("Decrement Year: ", decYear);
+}
+
+function incrementYear(incYear: number): void {
+  console.log("Increment Year: ", incYear);
+}
+
+function nextMonth(nextMonth: number): void {
+  console.log("Next Month: ", nextMonth);
+}
+
+function prevMonth(prevMonth: number): void {
+  console.log("Previous Month: ", prevMonth);
+}
+
+function resetMonth(resetMonth: number): void {
+  console.log("Reset Month: ", resetMonth);
+}
+
+function changeFirstWeekDay(firstWeekDay: number): void {
+  console.log("Change First Week Day: ", firstWeekDay);
+}
 </script>
 
 <template>
-  <VueMonthCalendar @get-date="getDate" :setEvents="setEvents" />
+  <VueMonthCalendar
+    @get-date="getDate"
+    @change-year="changeYear"
+    @change-month="changeMonth"
+    @decrement-year="decrementYear"
+    @increment-year="incrementYear"
+    @next-month="nextMonth"
+    @prev-month="prevMonth"
+    @reset-month="resetMonth"
+    @change-first-week-day="changeFirstWeekDay"
+
+    :setEvents="setEvents" />
 </template>
 

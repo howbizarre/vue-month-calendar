@@ -44,13 +44,13 @@ const props = defineProps<{
 
 const firstDayOfTheWeek: Ref<WeekFirstDay> = ref("monday");
 
-const dateObject = new Date();
-const currentMonth = dateObject.getMonth() + 1;
-const currentYear = dateObject.getFullYear();
-const currentDate = dateObject.getDate();
+const dateObject: Date = new Date();
+const currentMonth: number = dateObject.getMonth() + 1;
+const currentYear: number = dateObject.getFullYear();
+const currentDate: number = dateObject.getDate();
 
-const month = ref(currentMonth);
-const year = ref(currentYear);
+const month: Ref<number> = ref(currentMonth);
+const year: Ref<number> = ref(currentYear);
 
 /** The selected active date. If none is selected - the current date is selected. */
 const active = reactive({
@@ -60,53 +60,69 @@ const active = reactive({
 });
 
 /** Reset month to initial state */
-const canBeReseted = ref(false);
+const canBeReseted: Ref<boolean> = ref(false);
 const showSettings = reactive({
   forWeekDay: false,
   forDate: false
 });
 
-const emit = defineEmits(["getDate"]);
-const getDate = (activeDate: { month: number, year: number, date: number }) => emit("getDate", activeDate);
+const emit = defineEmits([
+  "getDate",
+  "changeYear",
+  "changeMonth",
+  "decrementYear",
+  "incrementYear",
+  "changeFirstWeekDay",
+  "nextMonth",
+  "prevMonth",
+  "resetMonth"
+]);
+const getDate = (activeDate: { month: number, year: number, date: number }): void => emit("getDate", activeDate);
 
-onMounted(() => {
-  getDate(active); 
-});
+onMounted(() => getDate(active));
 
-watch(active, (a) => {
-  getDate(a);
-});
+watch(active, a => getDate(a));
 
 function changeMonth(monthValue: Month): void {
   month.value = monthNumber(monthValue);
   canBeReseted.value = checkReset(year.value, month.value);
+
+  return emit("changeMonth", monthValue);
 }
 
 function changeYear(yearValue: number): void {
   year.value = yearValue;
   canBeReseted.value = checkReset(year.value, month.value);
+
+  return emit("changeYear", yearValue);
 }
 
 function decrementYear(decYear: number): void {
   year.value = decYear;
   canBeReseted.value = checkReset(year.value, month.value);
+
+  return emit("decrementYear", decYear);
 }
 
 function incrementYear(incYear: number): void {
   year.value = incYear;
   canBeReseted.value = checkReset(year.value, month.value);
+
+  return emit("incrementYear", incYear);
 }
 
 function checkReset(year: number, month: number): boolean {
   return year === currentYear && month === currentMonth ? false : true;
 }
 
-function setDate() {
+function setDate(): void {
   showSettings.forDate = true;
 }
 
-function changeFirstDayOfTheWeek(firstDay: WeekFirstDay) {
+function changeFirstDayOfTheWeek(firstDay: WeekFirstDay): void {
   firstDayOfTheWeek.value = firstDay;
+
+  return emit("changeFirstWeekDay", firstDay);
 }
 
 function showMonthSettings(): void {
@@ -130,18 +146,24 @@ function nextMonth(): void {
   year.value = month.value === 12 ? year.value + 1 : year.value;
   month.value = month.value === 12 ? 1 : month.value + 1;
   canBeReseted.value = checkReset(year.value, month.value);
+
+  return emit("nextMonth", { year: year.value, month: month.value });
 }
 
 function prevMonth(): void {
   year.value = month.value === 1 ? year.value - 1 : year.value;
   month.value = month.value === 1 ? 12 : month.value - 1;
   canBeReseted.value = checkReset(year.value, month.value);
+
+  return emit("prevMonth", { year: year.value, month: month.value });
 }
 
 function resetMonth(): void {
   year.value = currentYear;
   month.value = currentMonth;
   canBeReseted.value = false;
+
+  return emit("resetMonth", { year: year.value, month: month.value });
 }
 
 function resetActiveDate(): void {

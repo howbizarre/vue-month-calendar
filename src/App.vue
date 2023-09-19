@@ -10,19 +10,21 @@ const day = date.getDate();
 const nameOfMonth = monthName(month + 1);
 
 const setEvents = [
-  { date: 28, month: 2, year: 2023, note: "Event Info" },
-  { date: 5,  month: 3, year: 2023, note: "Event Info" },
-  { date: 5,  month: 3, year: 2023, note: "Event Info" },
-  { date: 5,  month: 3, year: 2023, note: "Event Info" },
-  { date: 14, month: 3, year: 2023, note: "Event Info" },
-  { date: 14, month: 3, year: 2023, note: "Event Info" },
-  { date: 15, month: 3, year: 2023, note: "Event Info" },
-  { date: 17, month: 3, year: 2023, note: "Event Info" },
-  { date: 22, month: 3, year: 2023, note: "Event Info" },
-  { date: 22, month: 3, year: 2023, note: "Event Info" },
-  { date: 23, month: 3, year: 2023, note: "Event Info" },
-  { date: 28, month: 3, year: 2023, note: "Event Info" },
-  { date: 10, month: 4, year: 2023, note: "Event Info" }
+  { date: 28, month: month    , year: year },
+  { date:  5, month: month + 1, year: year },
+  { date:  5, month: month + 1, year: year },
+  { date:  5, month: month + 1, year: year },
+  { date: 14, month: month + 1, year: year },
+  { date: 14, month: month + 1, year: year },
+  { date: 10, month: month + 1, year: year },
+  { date: 17, month: month + 1, year: year },
+  { date: 22, month: month + 1, year: year },
+  { date: 22, month: month + 1, year: year },
+  { date: 23, month: month + 1, year: year },
+  { date: 28, month: month + 1, year: year },
+  { date:  1, month: month + 2, year: year },
+  { date:  1, month: month + 2, year: year },
+  { date:  3, month: month + 2, year: year }
 ];
 
 function getDate(activeDate: { month: number, year: number, date: number }) {

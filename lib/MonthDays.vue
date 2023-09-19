@@ -35,12 +35,13 @@ const props = defineProps<{
   }[];
 }>();
 
+const { startDay, month, year, events } = toRefs(props);
 
 const vEvents: Directive = {
   mounted: (el: HTMLElement, binding: any) => {
     const eventCount = ref("");
 
-    props.events.forEach((ev) => {
+    events.value.forEach((ev) => {
       if (ev.date === binding.value.date && monthName(ev.month) === binding.value.month && ev.year === binding.value.year) {
         eventCount.value = eventCount.value + "<i class='w-[5px] h-[5px] rounded-full bg-lime-500 mx-[1px]'></i>";
       }
@@ -91,10 +92,10 @@ const isActive = (date: number, month: Month, year: number): string => {
   return `${date}${month}${year}` === `${dt}${m}${yr}` ? "active" : "";
 };
 
-const allDaysInMonth = ref(fillMonth(props.month, props.year, props.startDay));
+const allDaysInMonth = ref(fillMonth(month.value, year.value, startDay.value));
 
 watch(
-  () => [props.month, props.year, props.startDay],
+  () => [month.value, year.value, startDay.value],
   ([newMonth, newYear, newStartDay]) => {
     allDaysInMonth.value = fillMonth(Number(newMonth), Number(newYear), (newStartDay as WeekFirstDay));
   }

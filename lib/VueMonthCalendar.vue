@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, onMounted, watch } from "vue";
+import { ref, reactive, onMounted, watch, toRefs } from "vue";
 import { monthNumber } from "typescript-calendar-date";
 
 /** Types */
@@ -41,6 +41,8 @@ const props = defineProps<{
     year: number;
   }[];
 }>();
+
+const { setEvents } = toRefs(props);
 
 const firstDayOfTheWeek: Ref<WeekFirstDay> = ref("monday");
 

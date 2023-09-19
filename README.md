@@ -29,6 +29,8 @@ npm i @howbizarre/vue-month-calendar
 ```javasciprt
 <template>  
   <VueMonthCalendar
+    v-if="isMounted"
+
     @get-date="getDate"
     @change-year="changeYear"
     @change-month="changeMonth"
@@ -45,6 +47,9 @@ npm i @howbizarre/vue-month-calendar
 <script setup lang="ts">
 import { VueMonthCalendar } from "@howbizarre/vue-month-calendar";
 import "@howbizarre/vue-month-calendar/dist/style.css";
+import { ref, onMounted } from "vue";
+
+const isMounted = ref(false);
 
 const setEvents = [
   {
@@ -153,5 +158,7 @@ function resetMonth(resetMonth: number): void {
 function changeFirstWeekDay(firstWeekDay: number): void {
   console.log("Change First Week Day: ", firstWeekDay);
 }
+
+onMounted(() => isMounted.value = true);
 </script>
 ```

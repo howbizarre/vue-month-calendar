@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { monthName, addDays } from "typescript-calendar-date";
 import VueMonthCalendar from "../lib/VueMonthCalendar.vue";
+import { onMounted, ref } from "vue";
+
+const isMounted = ref(false);
 
 const date = new Date();
 const year = date.getFullYear();
@@ -26,6 +29,8 @@ const setEvents = [
   { date:  1, month: month + 2, year: year },
   { date:  3, month: month + 2, year: year }
 ];
+
+onMounted(() => isMounted.value = true);
 
 function getDate(activeDate: { month: number, year: number, date: number }) {
   console.group("The returned data is:");
@@ -70,6 +75,8 @@ function changeFirstWeekDay(firstWeekDay: number): void {
 
 <template>
   <VueMonthCalendar
+  v-if="isMounted"
+
     @get-date="getDate"
     @change-year="changeYear"
     @change-month="changeMonth"

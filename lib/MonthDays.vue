@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, toRefs } from "vue";
+import { ref, watch, toRefs, reactive } from "vue";
 import { fillMonth } from "./date-processing";
 import { monthNumber, monthName } from "typescript-calendar-date";
 import type { Directive } from 'vue';
@@ -35,13 +35,14 @@ const props = defineProps<{
   }[];
 }>();
 
-const { startDay, month, year, events } = toRefs(props);
+const { startDay, month, year } = toRefs(props);
+const reactivEvents = props.events.map(event => reactive(event));
 
 const vEvents: Directive = {
   mounted: (el: HTMLElement, binding: any) => {
     const eventCount = ref("");
 
-    events.value.forEach((ev) => {
+    reactivEvents.forEach((ev) => {
       if (ev.date === binding.value.date && monthName(ev.month) === binding.value.month && ev.year === binding.value.year) {
         eventCount.value = eventCount.value + "<i class='w-[5px] h-[5px] rounded-full bg-lime-500 mx-[1px]'></i>";
       }

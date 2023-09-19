@@ -7,7 +7,7 @@
 
     <template #default>
       <month-week :startDay="firstDayOfTheWeek" />
-      <month-days :month="month" :year="year" :startDay="firstDayOfTheWeek" :activeDay="active" @activate-date="activateDate" :events="setEvents" />
+      <month-days :month="month" :year="year" :startDay="firstDayOfTheWeek" :activeDay="active" @activate-date="activateDate" :events="reactivEvents" />
     </template>
 
     <template #footer>
@@ -42,7 +42,8 @@ const props = defineProps<{
   }[];
 }>();
 
-const { setEvents } = toRefs(props);
+const reactivEvents = props.setEvents.map(event => reactive(event));
+const reactiveProps = reactive(props);
 
 const firstDayOfTheWeek: Ref<WeekFirstDay> = ref("monday");
 

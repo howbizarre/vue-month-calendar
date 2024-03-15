@@ -90,7 +90,7 @@ function incrementYear(): void {
 
       <template v-if="showSettings.forDate">
         <div class="year-action">
-          <button @click="decrementYear" class="year-level year-level-left">
+          <button @click="decrementYear" class="year-level year-level-left" aria-label="Decrement Year">
             <span class="flex justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
                 <path d="M384 265H128v-17h256v17z" fill="currentColor" />
@@ -100,7 +100,7 @@ function incrementYear(): void {
 
           <input @keyup="changeYear(thisYear)" type="number" v-model.number="thisYear" class="year-level year-level-center" />
 
-          <button @click="incrementYear" class="year-level year-level-right">
+          <button @click="incrementYear" class="year-level year-level-right" aria-label="Increment Year">
             <span class="flex justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
                 <path d="M384 265H264v119h-17V265H128v-17h119V128h17v120h120v17z" fill="currentColor" />
@@ -110,11 +110,13 @@ function incrementYear(): void {
         </div>
 
         <div class="months-actions">
-          <button v-for="month in monthsInYear.short" @click="changeMonth(month)" class="month-action btn-month-base btn-full-rounded" :class="{ active: checkMonth(month) }">{{ month }}</button>
+          <button v-for="month in monthsInYear.short" @click="changeMonth(month)" :aria-label="`Month ${month}`" class="month-action btn-month-base btn-full-rounded" :class="{ active: checkMonth(month) }">
+            {{ month }}
+          </button>
         </div>
       </template>
 
-      <button @click="hideSettings" class="close-settings btn-month-base btn-full-rounded">close</button>
+      <button @click="hideSettings" class="close-settings btn-month-base btn-full-rounded" aria-label="Close settings">close</button>
     </div>
 
     <div class="bg-wrap" @click.self="hideSettings"></div>

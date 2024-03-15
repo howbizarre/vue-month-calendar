@@ -125,7 +125,7 @@ watch(props.events, pe => reactivEvents = pe.map(event => reactive(event)));
 <template>
   <div class="month-grid">
     <div v-for="md in allDaysInMonth" class="text-center" :key="md.day + md.date + md.month + md.year">
-      <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day relative" :class="[isWeekend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]">
+      <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day relative" :class="[isWeekend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]" :aria-label="`Day: ${md.date}, Month: ${md.month}, Year: ${md.year}`">
         {{ md.date }}
         <div class="day-events" v-events="md"></div>
       </button>

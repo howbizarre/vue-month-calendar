@@ -1,51 +1,3 @@
-<template>
-  <template v-if="showSettings.forWeekDay || showSettings.forDate">
-    <div class="month-settings-dialog">
-      <template v-if="showSettings.forWeekDay">
-        <h3 class="rw-colors text-left">First day of the week is <strong>{{ firstWeekDay[0].toUpperCase() }}{{ firstWeekDay.slice(1) }}</strong></h3>
-        <form class="start-day">
-          <label class="rw-colors cursor-pointer">
-            <input type="radio" id="monday" value="monday" v-model="firstWeekDay" @change="changeFirstWeekDay" /> Monday
-          </label>
-          <label class="rw-colors cursor-pointer">
-            <input type="radio" id="sunday" value="sunday" v-model="firstWeekDay" @change="changeFirstWeekDay" /> Sunday
-          </label>
-        </form>
-      </template>
-
-      <template v-if="showSettings.forDate">
-        <div class="flex flex-row w-full rounded-full relative mb-5">
-          <button @click="decrementYear" class="bg-teal-600 text-white hover:bg-teal-700 w-20 rounded-l-full cursor-pointer outline-none">
-            <span class="flex justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
-                <path d="M384 265H128v-17h256v17z" fill="currentColor" />
-              </svg>
-            </span>              
-          </button>
-
-          <input @keyup="changeYear(thisYear)" type="number" v-model.number="thisYear" class="outline-none text-center w-full font-semibold text-md flex items-center bg-teal-600 text-white focus:bg-teal-700" />
-          
-          <button @click="incrementYear" class="bg-teal-600 text-white hover:bg-teal-700 w-20 rounded-r-full cursor-pointer">
-            <span class="flex justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
-                <path d="M384 265H264v119h-17V265H128v-17h119V128h17v120h120v17z" fill="currentColor" />
-              </svg>
-            </span>
-          </button>
-        </div>
-
-        <div class="grid grid-cols-3 gap-3 text-black dark:text-white">
-          <button @click="changeMonth(month)" v-for="month in monthsInYear.short" class="btn-month-base btn-full-rouded text-[12px]" :class="{active: checkMonth(month)}">{{ month }}</button>
-        </div>
-      </template>
-
-      <button @click="hideSettings" class="close-settings btn-month-base btn-full-rouded">close</button>
-    </div>
-
-    <div class="opacity-50 fixed inset-0 z-[98] bg-black" @click.self="hideSettings"></div>
-  </template>
-</template>
-
 <script lang="ts" setup>
 import { ref, watch } from "vue";
 import { monthsInYear } from "./date-processing";
@@ -77,72 +29,94 @@ watch(
 const emit = defineEmits(["hideSettings", "changeFirstWeekDay", "decrementYear", "incrementYear", "changeYear", "changeMonth"]);
 const hideSettings = () => emit("hideSettings");
 
+/**
+ * Checks if the given month matches the current month.
+ * @param {string} mnt - The month to check.
+ * @returns {boolean} - True if the given month matches the current month, false otherwise.
+ */
 function checkMonth(mnt: string): boolean {
   return mnt === monthName(thisMonth.value);
 }
 
+/**
+ * Changes the month value and emits the "changeMonth" event.
+ * @param {string} monthValue - The new month value.
+ */
 function changeMonth(monthValue: string): void {
   checkMonth(monthValue);
   emit("changeMonth", monthValue);
 }
 
+/**
+ * Changes the year value and emits the "changeYear" event.
+ * @param {number} yearValue - The new year value.
+ */
 function changeYear(yearValue: number): void {
   emit("changeYear", yearValue);
 }
 
+/** Emits the "changeFirstWeekDay" event with the value of the firstWeekDay variable. */
 function changeFirstWeekDay(): void {
   emit("changeFirstWeekDay", firstWeekDay.value);
 }
 
+/** Decrements the current year value by 1 and emits the "decrementYear" event. */
 function decrementYear(): void {
   thisYear.value -= 1;
   emit("decrementYear", thisYear.value);
 }
 
+/** Increments the year value and emits the "incrementYear" event. */
 function incrementYear(): void {
   thisYear.value += 1;
   emit("incrementYear", thisYear.value);
 }
 </script>
 
-<style>
-@keyframes dim-show {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+<template>
+  <template v-if="showSettings.forWeekDay || showSettings.forDate">
+    <div class="month-settings-dialog">
+      <template v-if="showSettings.forWeekDay">
+        <h3 class="rw-colors text-left">First day of the week is <strong>{{ firstWeekDay[0].toUpperCase() }}{{ firstWeekDay.slice(1) }}</strong></h3>
+        <form class="start-day">
+          <label class="rw-colors cursor-pointer">
+            <input type="radio" id="monday" value="monday" v-model="firstWeekDay" @change="changeFirstWeekDay" /> Monday
+          </label>
+          <label class="rw-colors cursor-pointer">
+            <input type="radio" id="sunday" value="sunday" v-model="firstWeekDay" @change="changeFirstWeekDay" /> Sunday
+          </label>
+        </form>
+      </template>
 
-.weekend.active,
-.active { @apply !bg-blue-700 text-white; }
+      <template v-if="showSettings.forDate">
+        <div class="year-action">
+          <button @click="decrementYear" class="year-level year-level-left">
+            <span class="flex justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+                <path d="M384 265H128v-17h256v17z" fill="currentColor" />
+              </svg>
+            </span>
+          </button>
 
-.month-settings-dialog {
-  @apply
-    w-[300px]   
-    bg-white dark:bg-slate-800
-    ring-1 ring-zinc-900/5 dark:ring-zinc-600/25
-    shadow-xl dark:shadow-zinc-800
-    rounded-lg p-3 z-[999]
-    top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute;
-}
+          <input @keyup="changeYear(thisYear)" type="number" v-model.number="thisYear" class="year-level year-level-center" />
 
-.close-settings { @apply float-right mt-3 text-[10px]; }
+          <button @click="incrementYear" class="year-level year-level-right">
+            <span class="flex justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+                <path d="M384 265H264v119h-17V265H128v-17h119V128h17v120h120v17z" fill="currentColor" />
+              </svg>
+            </span>
+          </button>
+        </div>
 
-.rw-colors { @apply text-black dark:text-white; }
+        <div class="months-actions">
+          <button v-for="month in monthsInYear.short" @click="changeMonth(month)" class="month-action btn-month-base btn-full-rounded" :class="{ active: checkMonth(month) }">{{ month }}</button>
+        </div>
+      </template>
 
-.rw-colors strong { @apply text-teal-600 dark:text-teal-500; }
+      <button @click="hideSettings" class="close-settings btn-month-base btn-full-rounded">close</button>
+    </div>
 
-.start-day { @apply flex flex-col text-left; }
-
-/* Remove default arrows in input type number fields */
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-</style>
+    <div class="bg-wrap" @click.self="hideSettings"></div>
+  </template>
+</template>

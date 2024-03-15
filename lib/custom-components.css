@@ -1,0 +1,221 @@
+:root {
+  --white: white;
+  --black: black;
+
+  --zinc-400: #a1a1aa;
+  --zinc-600: #52525b;
+  --zinc-600-25: #52525b25;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-900-5: #18181b05;
+  --zinc-900-50: #18181b50;
+
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-500-25: #14b8a625;
+  --teal-600: #0891b2;
+  --teal-600-50: #0891b250;
+  --teal-700: #0e7490;
+  --teal-800: #155e75;
+
+  --sky-500: #0ea5e9;
+  --sky-500-5: #0ea5e905;
+  --sky-500-25: #0ea5e925;
+
+  --blue-600: #2563eb;
+
+  --container-sm-w: 350px;
+}
+
+.month-container {
+  @apply bg-[var(--white)] dark:bg-[var(--zinc-800)]
+    ring-1 ring-[var(--zinc-900-5)] dark:ring-[var(--zinc-600-25)]
+    shadow-xl dark:shadow-[var(--zinc-800)]
+    rounded-lg p-3 max-[300px]:w-[300px] max-sm:w-full sm:w-[var(--container-sm-w)] relative;
+}
+
+.month-grid {
+  @apply grid grid-cols-7 gap-y-2 py-3;
+}
+
+.month-header {
+  @apply grid grid-cols-5 p-3;
+}
+
+.btn-month-base {
+  @apply inline-block font-medium px-2 py-[3px]
+    bg-[var(--teal-600)] text-[var(--white)] hover:bg-[var(--teal-700)] focus:bg-[var(--teal-700)] active:bg-[var(--teal-800)]
+    leading-relaxed uppercase text-[10px]
+    shadow-md active:shadow-lg hover:shadow-lg focus:shadow-lg
+    focus:outline-none focus:ring-0 transition duration-150 ease-in-out;
+}
+
+.btn-full-rounded {
+  @apply rounded-full;
+}
+
+/**
+ * Week
+ */
+.week-day {
+  @apply w-[42px] h-[42px]
+    flex items-center justify-center rounded-full
+    capitalize text-center font-bold text-[var(--teal-600)];
+}
+
+.week-day.weekend {
+  @apply bg-[var(--sky-500-5)];
+}
+
+/**
+ * Settings
+ */
+@keyframes dim-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.weekend.active,
+.active {
+  @apply !bg-[var(--blue-600)] !text-[var(--white)];
+}
+
+.year-action {
+  @apply flex flex-row w-full rounded-full relative mb-5;
+}
+
+.year-level {
+  @apply bg-[var(--teal-600)] text-[var(--white)] hover:bg-[var(--teal-700)] outline-none;
+}
+
+.year-level.year-level-left {
+  @apply rounded-l-full w-20 cursor-pointer;
+}
+
+.year-level.year-level-right {
+  @apply rounded-r-full w-20 cursor-pointer;
+}
+
+.year-level.year-level-center {
+  @apply text-center w-full font-semibold flex items-center;
+}
+
+.months-actions {
+  @apply grid grid-cols-3 gap-3 text-[var(--black)] dark:text-[var(--white)];
+}
+
+.month-action {
+  @apply text-[12px];
+}
+
+.month-settings-dialog {
+  @apply w-[300px]   
+    bg-[var(--white)] dark:bg-[var(--zinc-800)]
+    ring-1 ring-[var(--zinc-900-5)] dark:ring-[var(--zinc-600-25)]
+    shadow-xl dark:shadow-[var(--zinc-800)]
+    rounded-lg p-3 z-[999]
+    top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 absolute;
+}
+
+.close-settings {
+  @apply float-right mt-3 text-[10px];
+}
+
+.rw-colors {
+  @apply text-[var(--black)] dark:text-[var(--white)];
+}
+
+.rw-colors strong {
+  @apply text-[var(--teal-600)] dark:text-[var(--teal-500)];
+}
+
+.start-day {
+  @apply flex flex-col text-left;
+}
+
+.bg-wrap {
+  @apply opacity-50 fixed inset-0 z-[98] bg-[var(--black)];
+}
+
+/* ---------------------------------- */
+/* Remove default arrows in input type number fields */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+/* ---------------------------------- */
+
+/**
+ * Label
+ */
+.info-bottom {
+  @apply flex justify-between
+    items-center p-3
+    text-[var(--teal-600)];
+}
+
+.info-bottom-part {
+  @apply flex items-start justify-start;
+}
+
+/**
+  * Info
+  */
+.month-info {
+  @apply capitalize text-3xl font-serif
+    relative text-left
+    text-[var(--teal-600)];
+}
+
+.update-month-info {
+  @apply absolute cursor-pointer
+    text-[var(--teal-600-50)] hover:text-[var(--teal-600)] transition-colors;
+}
+
+/**
+ * Days
+ */
+.calendar-day {
+  @apply w-[42px] h-[42px]
+    text-center rounded-full border-none
+    transition-colors text-[var(--zinc-400)] hover:bg-[var(--sky-500-25)];
+}
+
+.calendar-day.weekend {
+  @apply bg-[var(--sky-500-5)] text-[var(--teal-600)] hover:bg-[var(--sky-500-25)];
+}
+
+.calendar-day.current {
+  @apply !bg-[var(--teal-500-25)];
+}
+
+.calendar-day.current.active {
+  @apply !text-[var(--black)] dark:!text-[var(--white)];
+}
+
+.day-events {
+  @apply absolute bottom-[5px] left-0 w-full text-center flex justify-center;
+}
+
+/**
+ * Actions
+ */
+.month-actions {
+  @apply flex justify-between;
+}
+
+.action-icon {
+  @apply transition-colors text-[var(--teal-600)] hover:text-[var(--teal-800)] dark:hover:text-[var(--teal-400)];
+}

@@ -1,14 +1,3 @@
-<template>
-  <div class="month-grid">
-    <div v-for="md in allDaysInMonth" class="text-center" :key="md.day + md.date + md.month + md.year">
-      <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day relative" :class="[isWeedend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]">
-        {{ md.date }}
-        <div class="absolute bottom-[5px] left-0 w-full text-center flex justify-center" v-events="md"></div>
-      </button>
-    </div>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { ref, watch, toRefs, reactive } from "vue";
 import { fillMonth } from "./date-processing";
@@ -38,6 +27,15 @@ const props = defineProps<{
 const { startDay, month, year } = toRefs(props);
 let reactivEvents = props.events.map(event => reactive(event));
 
+/**
+ * Directive to display events on a specific date in the month calendar.
+ * @directive vEvents
+ * @param {HTMLElement} el - The element to mount the directive on.
+ * @param {Object} binding - The binding object containing the value for the directive.
+ * @param {string} binding.value.date - The date of the event.
+ * @param {string} binding.value.month - The month of the event.
+ * @param {string} binding.value.year - The year of the event.
+ */
 const vEvents: Directive = {
   mounted: (el: HTMLElement, binding: any) => {
     const eventCount = ref("");
@@ -57,10 +55,22 @@ const currentMonth = dateObject.getMonth() + 1;
 const currentYear = dateObject.getFullYear();
 const currentDate = dateObject.getDate();
 
-const isWeedend = (day: string): string => {
+/**
+ * Determines if a given day is a weekend or weekday.
+ * @param {string} day - The day to check.
+ * @returns {string} - The CSS class name for the day.
+ */
+const isWeekend = (day: string): string => {
   return day === "sat" || day === "sun" ? "weekend weekday" : "weekday";
 }
 
+/**
+ * Determines if a given date is the current date.
+ * @param {number} date - The date to check.
+ * @param {Month} month - The month of the date.
+ * @param {number} year - The year of the date.
+ * @returns {string} - A string indicating if the date is the current date ("current") or an empty string ("") if it is not.
+ */
 const isCurrent = (date: number, month: Month, year: number): string => {
   const mnt = monthNumber(month);
 
@@ -75,6 +85,13 @@ const isCurrent = (date: number, month: Month, year: number): string => {
   return `${date}${mnt}${year}` === `${currentDate}${currentMonth}${currentYear}` ? "current" : "";
 }
 
+/**
+ * Determines if a given date is active based on the provided active day.
+ * @param {number} date - The date to check.
+ * @param {Month} month - The month of the date.
+ * @param {number} year - The year of the date.
+ * @returns {string} - Returns "active" if the date is active, otherwise an empty string.
+ */
 const isActive = (date: number, month: Month, year: number): string => {
   const yr = props?.activeDay && props.activeDay.year;
   const mnt = props?.activeDay && props.activeDay.month;
@@ -105,27 +122,13 @@ watch(
 watch(props.events, pe => reactivEvents = pe.map(event => reactive(event)));
 </script>
 
-<style>
-.calendar-day {
-  @apply
-    w-[42px] h-[42px]
-    text-center rounded-full border-none
-    transition-colors text-zinc-400 hover:bg-cyan-500/25;
-}
-
-.calendar-day.weekend {
-    @apply bg-sky-500/5 text-teal-600 hover:bg-cyan-500/25;
-}
-
-.calendar-day.current {
-    @apply !bg-teal-500/25;
-}
-
-.calendar-day.current.active {
-  @apply text-black dark:text-white;
-}
-
-.calendar-day.active {
-    @apply bg-cyan-500/25;
-}
-</style>
+<template>
+  <div class="month-grid">
+    <div v-for="md in allDaysInMonth" class="text-center" :key="md.day + md.date + md.month + md.year">
+      <button @click="$emit('activateDate', md.date, md.month, md.year)" class="calendar-day relative" :class="[isWeekend(md.day), isCurrent(md.date, md.month, md.year), isActive(md.date, md.month, md.year)]">
+        {{ md.date }}
+        <div class="day-events" v-events="md"></div>
+      </button>
+    </div>
+  </div>
+</template>

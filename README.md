@@ -162,3 +162,40 @@ function changeFirstWeekDay(firstWeekDay: number): void {
 onMounted(() => isMounted.value = true);
 </script>
 ```
+
+## Customize colors
+
+You can customize the colors of the calendar by overriding the CSS variables.
+
+```css
+:root {
+  --white: white;
+  --black: black;
+
+  --zinc-400: #a1a1aa;
+  --zinc-600: #52525b;
+  --zinc-600-25: #52525b25;
+  --zinc-800: #27272a;
+  --zinc-900: #18181b;
+  --zinc-900-5: #18181b05;
+  --zinc-900-50: #18181b50;
+
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-500-25: #14b8a625;
+  --teal-600: #0891b2;
+  --teal-600-50: #0891b250;
+  --teal-700: #0e7490;
+  --teal-800: #155e75;
+
+  --sky-500: #0ea5e9;
+  --sky-500-5: #0ea5e905;
+  --sky-500-25: #0ea5e925;
+
+  --blue-600: #2563eb;
+
+  --container-sm-w: 350px;
+}
+```
+
+The colors are with the names and values from Tailwindcss, and for transparency I use HEX with an alpha channel and added to the name of the var.

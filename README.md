@@ -18,7 +18,7 @@ The component also **support Dark** or White **themes**.
 
 ## Install
 
-In to your Vue 3 project install as dependancy:
+In to your Vue 3 project install as dependency:
 
 ```sh
 npm i @howbizarre/vue-month-calendar
@@ -26,7 +26,7 @@ npm i @howbizarre/vue-month-calendar
 
 ## Usage
 
-```javasciprt
+```javascript
 <template>  
   <VueMonthCalendar
     v-if="isMounted"
@@ -123,7 +123,7 @@ function getDate(activeDate: { month: number, year: number, date: number }) {
   console.group("The returned data is:");
   console.log("Day: ", activeDate.date);
   console.log("Month: ", activeDate.month);
-  console.log("Yeaar: ", activeDate.year);
+  console.log("Year: ", activeDate.year);
   console.groupEnd();
 }
 

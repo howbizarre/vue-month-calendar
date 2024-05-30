@@ -4,7 +4,10 @@
   "description": "Draws a given month with its days using.",
   "homepage": "https://bizarre.how/calendar/",
   "license": "CC-BY-4.0",
-  "repository": "github:@howbizarre/vue-month-calendar",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/howbizarre/vue-month-calendar.git"
+  },
   "author": "How Bizarre <how.bizarre@gmail.com>",
   "keywords": [
     "vue",

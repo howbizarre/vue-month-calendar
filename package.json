@@ -1,6 +1,6 @@
 {
   "name": "@howbizarre/vue-month-calendar",
-  "version": "1.4.61",
+  "version": "1.4.62",
   "description": "Draws a given month with its days using.",
   "homepage": "https://bizarre.how/calendar/",
   "license": "CC-BY-4.0",
@@ -32,9 +32,9 @@
   "types": "./dist/main.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/main.d.ts",
       "import": "./dist/vue-month-calendar.js",
-      "require": "./dist/vue-month-calendar.umd.js",
-      "types": "./dist/main.d.ts"
+      "require": "./dist/vue-month-calendar.umd.js"
     },
     "./dist/style.css": "./dist/style.css"
   },
@@ -50,13 +50,14 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-vue": "^6.0.2",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^4.1.17",
     "typescript": "^5.4.3",
-    "vite": "^5.2.6",
-    "vue-tsc": "^2.0.6"
+    "vite": "^7.2.7",
+    "vue-tsc": "^3.1.7"
   }
 }

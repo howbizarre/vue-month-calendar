@@ -1,3 +1,5 @@
+@import "./tailwind.css";
+
 :root {
   --white: white;
   --black: black;
@@ -31,7 +33,16 @@
   @apply bg-[var(--white)] dark:bg-[var(--zinc-800)]
     ring-1 ring-[var(--zinc-900-5)] dark:ring-[var(--zinc-600-25)]
     shadow-xl dark:shadow-[var(--zinc-800)]
-    rounded-lg p-3 max-[300px]:w-[300px] max-sm:w-full sm:w-[var(--container-sm-w)] relative;
+    rounded-lg p-3 relative;
+  
+  width: 300px;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .month-container {
+    width: var(--container-sm-w);
+  }
 }
 
 .month-grid {
